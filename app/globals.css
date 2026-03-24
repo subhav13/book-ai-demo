@@ -1,26 +1,67 @@
 @import "tailwindcss";
 
+/* Force dark mode: the app uses Stitch's Lumina Quantum dark palette exclusively */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-background: #131121;
+  --color-error: #ffb4ab;
+  --color-error-container: #93000a;
+  --color-inverse-on-surface: #312e3f;
+  --color-inverse-primary: #4f44e2;
+  --color-inverse-surface: #e5dff6;
+  --color-on-background: #e5dff6;
+  --color-on-error: #690005;
+  --color-on-error-container: #ffdad6;
+  --color-on-primary: #2000a4;
+  --color-on-primary-container: #1b0091;
+  --color-on-primary-fixed: #100069;
+  --color-on-primary-fixed-variant: #3622ca;
+  --color-on-secondary: #302e46;
+  --color-on-secondary-container: #b9b5d3;
+  --color-on-secondary-fixed: #1a1930;
+  --color-on-secondary-fixed-variant: #46445d;
+  --color-on-surface: #e5dff6;
+  --color-on-surface-variant: #c7c4d8;
+  --color-on-tertiary: #00363d;
+  --color-on-tertiary-container: #002f35;
+  --color-on-tertiary-fixed: #001f24;
+  --color-on-tertiary-fixed-variant: #004f58;
+  --color-outline: #918fa1;
+  --color-outline-variant: #464555;
+  --color-primary: #c4c0ff;
+  --color-primary-container: #8781ff;
+  --color-primary-fixed: #e3dfff;
+  --color-primary-fixed-dim: #c4c0ff;
+  --color-secondary: #c7c3e2;
+  --color-secondary-container: #484660;
+  --color-secondary-fixed: #e3dfff;
+  --color-secondary-fixed-dim: #c7c3e2;
+  --color-surface: #131121;
+  --color-surface-bright: #3a3748;
+  --color-surface-container: #201e2d;
+  --color-surface-container-high: #2a2838;
+  --color-surface-container-highest: #353344;
+  --color-surface-container-low: #1c1a29;
+  --color-surface-container-lowest: #0e0c1b;
+  --color-surface-dim: #131121;
+  --color-surface-tint: #c4c0ff;
+  --color-surface-variant: #353344;
+  --color-tertiary: #00daf3;
+  --color-tertiary-container: #009fb2;
+  --color-tertiary-fixed: #9cf0ff;
+  --color-tertiary-fixed-dim: #00daf3;
+
+  --font-headline: var(--font-headline);
+  --font-body: var(--font-body);
+  --font-label: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
+html, body {
+  background-color: #131121 !important;
+  color: #e5dff6 !important;
   font-family: Arial, Helvetica, sans-serif;
 }
+
