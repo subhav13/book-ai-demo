@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { demoBook } from "@/lib/books";
 import { generateChatResponse } from "@/lib/gemini";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { jsPDF } from "jspdf";
 
 export default function ChatPage({
@@ -107,29 +108,31 @@ export default function ChatPage({
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-[0_20px_40px_rgba(70,71,211,0.08)]">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-outline-variant/20"
+               style={{ backgroundColor: "color-mix(in srgb, var(--color-surface-container-low) 90%, transparent)" }}>
         <div className="flex justify-between items-center w-full px-6 py-4">
           <div className="flex items-center gap-4">
-            <button className="text-indigo-600 dark:text-indigo-400 hover:scale-105 transition-transform duration-200">
-              <span className="material-symbols-outlined" data-icon="menu">
-                menu
-              </span>
+            <button className="text-primary hover:scale-105 transition-transform duration-200">
+              <span className="material-symbols-outlined" data-icon="menu">menu</span>
             </button>
             <div className="flex flex-col">
-              <h1 className="text-2xl font-black text-[#f4f1ff] tracking-tight mb-1">
+              <h1 className="text-2xl font-black text-on-surface tracking-tight mb-1">
                 {demoBook.title}
               </h1>
-              <span className="text-xs font-medium text-slate-500 tracking-wide uppercase">
+              <span className="text-xs font-medium text-on-surface-variant tracking-wide uppercase">
                 {demoBook.chapters[0].title}
               </span>
             </div>
           </div>
-          <button
-            onClick={handleExportPDF}
-            className="bg-primary text-on-primary px-6 py-2 rounded-full font-bold text-sm shadow-[0_10px_20px_rgba(70,71,211,0.2)] hover:scale-105 transition-transform active:scale-95"
-          >
-            Export PDF
-          </button>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <button
+              onClick={handleExportPDF}
+              className="bg-primary text-on-primary px-6 py-2 rounded-full font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-md"
+            >
+              Export PDF
+            </button>
+          </div>
         </div>
       </header>
 

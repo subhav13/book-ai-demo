@@ -1,67 +1,202 @@
 @import "tailwindcss";
 
-/* Force dark mode: the app uses Stitch's Lumina Quantum dark palette exclusively */
-:root {
-  color-scheme: dark;
-}
-
+/* =============================================
+   TAILWIND @theme — static token values for utility generation
+   These must be literal values (not var()) for Tailwind v4
+   ============================================= */
 @theme {
-  --color-background: #131121;
-  --color-error: #ffb4ab;
-  --color-error-container: #93000a;
-  --color-inverse-on-surface: #312e3f;
-  --color-inverse-primary: #4f44e2;
-  --color-inverse-surface: #e5dff6;
-  --color-on-background: #e5dff6;
-  --color-on-error: #690005;
-  --color-on-error-container: #ffdad6;
-  --color-on-primary: #2000a4;
-  --color-on-primary-container: #1b0091;
-  --color-on-primary-fixed: #100069;
-  --color-on-primary-fixed-variant: #3622ca;
-  --color-on-secondary: #302e46;
-  --color-on-secondary-container: #b9b5d3;
-  --color-on-secondary-fixed: #1a1930;
-  --color-on-secondary-fixed-variant: #46445d;
-  --color-on-surface: #e5dff6;
-  --color-on-surface-variant: #c7c4d8;
-  --color-on-tertiary: #00363d;
-  --color-on-tertiary-container: #002f35;
-  --color-on-tertiary-fixed: #001f24;
-  --color-on-tertiary-fixed-variant: #004f58;
-  --color-outline: #918fa1;
-  --color-outline-variant: #464555;
-  --color-primary: #c4c0ff;
-  --color-primary-container: #8781ff;
-  --color-primary-fixed: #e3dfff;
-  --color-primary-fixed-dim: #c4c0ff;
-  --color-secondary: #c7c3e2;
-  --color-secondary-container: #484660;
-  --color-secondary-fixed: #e3dfff;
-  --color-secondary-fixed-dim: #c7c3e2;
-  --color-surface: #131121;
-  --color-surface-bright: #3a3748;
-  --color-surface-container: #201e2d;
-  --color-surface-container-high: #2a2838;
-  --color-surface-container-highest: #353344;
-  --color-surface-container-low: #1c1a29;
-  --color-surface-container-lowest: #0e0c1b;
-  --color-surface-dim: #131121;
-  --color-surface-tint: #c4c0ff;
-  --color-surface-variant: #353344;
-  --color-tertiary: #00daf3;
-  --color-tertiary-container: #009fb2;
-  --color-tertiary-fixed: #9cf0ff;
-  --color-tertiary-fixed-dim: #00daf3;
+  /* Light mode values used for utility class generation */
+  --color-surface: #f8f7ff;
+  --color-surface-dim: #e8e5f5;
+  --color-surface-bright: #ffffff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f0fc;
+  --color-surface-container: #ede9f9;
+  --color-surface-container-high: #e5e1f5;
+  --color-surface-container-highest: #dfdcef;
+  --color-surface-variant: #e5e1f5;
+  --color-surface-tint: #5b52d9;
+
+  --color-on-surface: #1a1730;
+  --color-on-surface-variant: #48445a;
+
+  --color-primary: #5b52d9;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #e4e1ff;
+  --color-on-primary-container: #17006e;
+  --color-primary-fixed: #e6e0ff;
+  --color-primary-fixed-dim: #cac4ff;
+  --color-on-primary-fixed: #0d0066;
+  --color-on-primary-fixed-variant: #433bba;
+  --color-inverse-primary: #c4c0ff;
+
+  --color-secondary: #5d5b77;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #e2dff9;
+  --color-on-secondary-container: #1a1930;
+
+  --color-tertiary: #0077a8;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #c7eeff;
+  --color-on-tertiary-container: #001e2b;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #410002;
+
+  --color-outline: #7b7891;
+  --color-outline-variant: #c8c4d9;
+
+  --color-background: #f8f7ff;
+  --color-on-background: #1a1730;
+
+  --color-inverse-surface: #302d40;
+  --color-inverse-on-surface: #f3effe;
 
   --font-headline: var(--font-headline);
   --font-body: var(--font-body);
   --font-label: var(--font-body);
 }
 
-html, body {
-  background-color: #131121 !important;
-  color: #e5dff6 !important;
-  font-family: Arial, Helvetica, sans-serif;
+/* =============================================
+   RUNTIME THEME VARIABLES (override Tailwind tokens)
+   Light = default, Dark = .dark class on <html>
+
+   We use --tw-* prefix overrides to patch Tailwind v4's
+   compiled vars at runtime for theme switching.
+   ============================================= */
+
+/* Light mode (default) */
+:root {
+  color-scheme: light;
+
+  --color-surface: #f8f7ff;
+  --color-surface-dim: #e8e5f5;
+  --color-surface-bright: #ffffff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f0fc;
+  --color-surface-container: #ede9f9;
+  --color-surface-container-high: #e5e1f5;
+  --color-surface-container-highest: #dfdcef;
+  --color-surface-variant: #e5e1f5;
+  --color-surface-tint: #5b52d9;
+
+  --color-on-surface: #1a1730;
+  --color-on-surface-variant: #48445a;
+
+  --color-primary: #5b52d9;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #e4e1ff;
+  --color-on-primary-container: #17006e;
+  --color-primary-fixed: #e6e0ff;
+  --color-primary-fixed-dim: #cac4ff;
+  --color-on-primary-fixed: #0d0066;
+  --color-on-primary-fixed-variant: #433bba;
+  --color-inverse-primary: #c4c0ff;
+
+  --color-secondary: #5d5b77;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #e2dff9;
+  --color-on-secondary-container: #1a1930;
+
+  --color-tertiary: #0077a8;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #c7eeff;
+  --color-on-tertiary-container: #001e2b;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #410002;
+
+  --color-outline: #7b7891;
+  --color-outline-variant: #c8c4d9;
+
+  --color-background: #f8f7ff;
+  --color-on-background: #1a1730;
+  --color-inverse-surface: #302d40;
+  --color-inverse-on-surface: #f3effe;
 }
 
+/* Dark mode — activated by .dark on <html> */
+.dark {
+  color-scheme: dark;
+
+  --color-surface: #131121;
+  --color-surface-dim: #131121;
+  --color-surface-bright: #3a3748;
+  --color-surface-container-lowest: #0e0c1b;
+  --color-surface-container-low: #1c1a29;
+  --color-surface-container: #201e2d;
+  --color-surface-container-high: #2a2838;
+  --color-surface-container-highest: #353344;
+  --color-surface-variant: #353344;
+  --color-surface-tint: #c4c0ff;
+
+  --color-on-surface: #e5dff6;
+  --color-on-surface-variant: #c7c4d8;
+
+  --color-primary: #c4c0ff;
+  --color-on-primary: #2000a4;
+  --color-primary-container: #8781ff;
+  --color-on-primary-container: #1b0091;
+  --color-primary-fixed: #e3dfff;
+  --color-primary-fixed-dim: #c4c0ff;
+  --color-on-primary-fixed: #100069;
+  --color-on-primary-fixed-variant: #3622ca;
+  --color-inverse-primary: #4f44e2;
+
+  --color-secondary: #c7c3e2;
+  --color-on-secondary: #302e46;
+  --color-secondary-container: #484660;
+  --color-on-secondary-container: #b9b5d3;
+
+  --color-tertiary: #00daf3;
+  --color-on-tertiary: #00363d;
+  --color-tertiary-container: #009fb2;
+  --color-on-tertiary-container: #002f35;
+
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+
+  --color-outline: #918fa1;
+  --color-outline-variant: #464555;
+
+  --color-background: #131121;
+  --color-on-background: #e5dff6;
+  --color-inverse-surface: #e5dff6;
+  --color-inverse-on-surface: #312e3f;
+}
+
+/* =============================================
+   BASE STYLES
+   ============================================= */
+html, body {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-tertiary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass card */
+.glass-card {
+  background: color-mix(in srgb, var(--color-surface-container) 80%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in srgb, var(--color-outline-variant) 40%, transparent);
+}
+
+.ghost-border {
+  border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+}

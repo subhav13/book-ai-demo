@@ -1,43 +1,36 @@
+"use client";
+import { ThemeToggle } from "@/components/ThemeToggle";
+
 export default function LandingPage() {
   return (
     <>
       {/*  TopNavBar  */}
-      <nav className="fixed top-0 w-full z-50 bg-slate-950/60 backdrop-blur-xl shadow-[0_24px_48px_rgba(108,99,255,0.08)]">
+      <nav className="fixed top-0 w-full z-50 backdrop-blur-xl border-b border-outline-variant/20"
+           style={{ backgroundColor: "color-mix(in srgb, var(--color-surface-container-low) 85%, transparent)" }}>
         <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-          <div className="text-2xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-cyan-400 font-['Plus_Jakarta_Sans']">
+          <div className="text-2xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-primary to-tertiary font-['Plus_Jakarta_Sans']">
             Book AI
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <a
-              className="text-cyan-400 font-semibold border-b-2 border-cyan-400 pb-1 font-['Plus_Jakarta_Sans'] tracking-tight"
-              href="#"
-            >
+            <a className="text-primary font-semibold border-b-2 border-primary pb-1 font-['Plus_Jakarta_Sans'] tracking-tight" href="#">
               Platform
             </a>
-            <a
-              className="text-slate-300/80 hover:text-white transition-colors font-['Plus_Jakarta_Sans'] tracking-tight"
-              href="#"
-            >
+            <a className="text-on-surface-variant hover:text-on-surface transition-colors font-['Plus_Jakarta_Sans'] tracking-tight" href="#">
               Case Studies
             </a>
-            <a
-              className="text-slate-300/80 hover:text-white transition-colors font-['Plus_Jakarta_Sans'] tracking-tight"
-              href="#"
-            >
+            <a className="text-on-surface-variant hover:text-on-surface transition-colors font-['Plus_Jakarta_Sans'] tracking-tight" href="#">
               Solutions
             </a>
-            <a
-              className="text-slate-300/80 hover:text-white transition-colors font-['Plus_Jakarta_Sans'] tracking-tight"
-              href="#"
-            >
+            <a className="text-on-surface-variant hover:text-on-surface transition-colors font-['Plus_Jakarta_Sans'] tracking-tight" href="#">
               Pricing
             </a>
           </div>
           <div className="flex items-center gap-4">
-            <button className="hidden sm:block text-slate-300/80 hover:text-white transition-colors font-medium text-sm">
+            <ThemeToggle />
+            <button className="hidden sm:block text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm">
               Log In
             </button>
-            <button className="bg-gradient-to-r from-primary to-primary-container text-on-primary-fixed px-6 py-2.5 rounded-full font-bold text-sm hover:scale-105 transition-transform active:scale-95">
+            <button className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-md hover:shadow-lg">
               Try the Demo
             </button>
           </div>

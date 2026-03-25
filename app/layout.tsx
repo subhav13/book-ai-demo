@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "./contexts/AuthContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -28,11 +29,27 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${plusJakarta.variable} ${beVietnam.variable} antialiased`}
+      className={`${plusJakarta.variable} ${beVietnam.variable} antialiased`}
       suppressHydrationWarning
     >
       <head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        />
+        {/* Apply theme before first paint to prevent flash */}
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              var theme = localStorage.getItem('book-ai-theme');
+              if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+              } else {
+                document.documentElement.classList.remove('dark');
+              }
+            })();
+          `
+        }} />
         <style>
           {`
           .material-symbols-outlined {
@@ -41,10 +58,12 @@ export default function RootLayout({
           `}
         </style>
       </head>
-      <body className="bg-surface font-body text-on-surface min-h-screen flex flex-col">
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+      <body className="font-body min-h-screen flex flex-col">
+        <ThemeProvider>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
