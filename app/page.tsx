@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function LandingPage() {
@@ -27,12 +28,12 @@ export default function LandingPage() {
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <button className="hidden sm:block text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm">
+            <Link href="/login" className="hidden sm:block text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm">
               Log In
-            </button>
-            <button className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-md hover:shadow-lg">
+            </Link>
+            <Link href="/login" className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-md hover:shadow-lg">
               Try the Demo
-            </button>
+            </Link>
           </div>
         </div>
       </nav>
@@ -56,10 +57,10 @@ export default function LandingPage() {
                 chapter-aware insights.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-6">
-                <button className="group relative px-10 py-5 bg-gradient-to-br from-primary to-primary-container rounded-full text-on-primary-fixed font-bold text-lg transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(196,192,255,0.3)]">
+                <Link href="/login" className="group relative px-10 py-5 bg-gradient-to-br from-primary to-primary-container rounded-full text-on-primary-fixed font-bold text-lg transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(196,192,255,0.3)]">
                   Try the Demo
                   <div className="absolute inset-0 rounded-full animate-pulse bg-white/20 group-hover:opacity-0 transition-opacity"></div>
-                </button>
+                </Link>
                 <div className="flex items-center gap-3 text-on-surface-variant font-medium">
                   <span
                     className="material-symbols-outlined text-tertiary"
