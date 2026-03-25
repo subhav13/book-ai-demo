@@ -1,8 +1,11 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { demoBook } from "@/lib/books";
 import { generateChatResponse } from "@/lib/gemini";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useAuth } from "@/app/contexts/AuthContext";
 import { jsPDF } from "jspdf";
 
 export default function ChatPage({
@@ -10,6 +13,8 @@ export default function ChatPage({
 }: {
   params: { bookId: string; chapterId: string };
 }) {
+  const router = useRouter();
+  const { user } = useAuth();
   const [messages, setMessages] = useState<
     { role: "user" | "model"; text: string }[]
   >([]);
@@ -110,28 +115,55 @@ export default function ChatPage({
     <>
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-outline-variant/20"
                style={{ backgroundColor: "color-mix(in srgb, var(--color-surface-container-low) 90%, transparent)" }}>
-        <div className="flex justify-between items-center w-full px-6 py-4">
-          <div className="flex items-center gap-4">
-            <button className="text-primary hover:scale-105 transition-transform duration-200">
-              <span className="material-symbols-outlined" data-icon="menu">menu</span>
+        <div className="flex items-center justify-between w-full px-4 md:px-6 h-16">
+
+          {/* Left — back button */}
+          <div className="flex items-center gap-2 min-w-[120px]">
+            <button
+              onClick={() => router.push("/")}
+              className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors group"
+            >
+              <span className="material-symbols-outlined text-xl group-hover:-translate-x-0.5 transition-transform">arrow_back</span>
+              <span className="hidden sm:block text-sm font-semibold">Home</span>
             </button>
-            <div className="flex flex-col">
-              <h1 className="text-2xl font-black text-on-surface tracking-tight mb-1">
-                {demoBook.title}
-              </h1>
-              <span className="text-xs font-medium text-on-surface-variant tracking-wide uppercase">
-                {demoBook.chapters[0].title}
-              </span>
-            </div>
           </div>
-          <div className="flex items-center gap-3">
+
+          {/* Center — book info */}
+          <div className="flex flex-col items-center text-center">
+            <h1 className="text-base md:text-lg font-black text-on-surface tracking-tight leading-tight line-clamp-1">
+              {demoBook.title}
+            </h1>
+            <span className="text-[10px] font-semibold text-on-surface-variant tracking-widest uppercase">
+              {demoBook.chapters[0].title}
+            </span>
+          </div>
+
+          {/* Right — actions */}
+          <div className="flex items-center gap-2 md:gap-3 min-w-[120px] justify-end">
             <ThemeToggle />
             <button
               onClick={handleExportPDF}
-              className="bg-primary text-on-primary px-6 py-2 rounded-full font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-md"
+              className="hidden sm:block bg-primary text-white px-4 py-1.5 rounded-full font-bold text-xs hover:scale-105 transition-transform active:scale-95 shadow-md"
+              style={{ background: "linear-gradient(135deg, #5b52d9, #0077a8)" }}
             >
               Export PDF
             </button>
+            {/* Profile avatar */}
+            {user?.photoURL ? (
+              <img
+                src={user.photoURL}
+                alt={user.displayName ?? "Profile"}
+                className="w-8 h-8 rounded-full border-2 border-primary/40 object-cover"
+                title={user.displayName ?? "Profile"}
+              />
+            ) : (
+              <Link href="/login"
+                className="w-8 h-8 rounded-full flex items-center justify-center bg-primary/10 border border-primary/30 hover:bg-primary/20 transition-colors"
+                title="Sign in"
+              >
+                <span className="material-symbols-outlined text-primary" style={{ fontSize: "18px" }}>person</span>
+              </Link>
+            )}
           </div>
         </div>
       </header>
